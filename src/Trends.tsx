@@ -1,22 +1,21 @@
-import React, { Component } from "react";
+import { FilterComponent } from "./FilterComponent";
+import { HistoricalTrendsComponent } from "./HistoricalTrendsChart";
 
+import * as React from "react";
 import { Grid, Col, Panel } from "react-bootstrap";
-
-import { FilterComponent } from './FilterComponent';
-import { HistoricalTrendsComponent } from './HistoricalTrendsChart';
 
 import "./Trends.css";
 
-export class Trends extends Component {
-  render() {
+export class Trends extends React.Component {
+  public render(): React.Component {
     return (
-      <Grid fluid>
+      <Grid fluid={true}>
         <Panel>
           <Panel.Heading>Historical Trends</Panel.Heading>
           <Panel.Body>
             <Col md={9}>
               <div>
-                <HistoricalTrendsComponent/>
+                <HistoricalTrendsComponent />
               </div>
             </Col>
             <Col md={3}>
@@ -30,5 +29,3 @@ export class Trends extends Component {
     );
   }
 }
-
-export default Trends;

@@ -1,0 +1,230 @@
+Type Checking
+src/App.tsx(9,5): error TS2740: Type 'Element' is missing the following properties from type 'Component<{}, {}, any>': context, setState, forceUpdate, render, and 2 more.
+src/DateRange.tsx(2,10): error TS2305: Module '"../node_modules/@types/react-select"' has no exported member 'Select'.
+src/DateRange.tsx(31,7): error TS2739: Type '{ value: string; label: string; }[]' is missing the following properties from type 'DateRangeOptions': value, label
+src/DateRange.tsx(52,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/DateRange.tsx(55,18): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'DateRangeOptions'.
+  Property '0' does not exist on type 'DateRangeOptions'.
+src/DateRange.tsx(57,16): error TS7053: Element implicitly has an 'any' type because expression of type '1' can't be used to index type 'DateRangeOptions'.
+  Property '1' does not exist on type 'DateRangeOptions'.
+src/DateRange.tsx(65,16): error TS2339: Property 'onDateRangeChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/DateRange.tsx(66,18): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(67,18): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(74,16): error TS2339: Property 'onDateRangeChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/DateRange.tsx(75,18): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(76,18): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(85,16): error TS2339: Property 'onDateRangeChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/DateRange.tsx(85,63): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(92,16): error TS2339: Property 'onDateRangeChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/DateRange.tsx(92,46): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(124,15): error TS2339: Property 'json' does not exist on type 'DateRangeResponse'.
+src/DateRange.tsx(124,27): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DateRange.tsx(124,66): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DateRange.tsx(128,13): error TS2345: Argument of type '(results: DateRangeResponse) => void' is not assignable to parameter of type '(value: Response) => void | PromiseLike<void>'.
+  Types of parameters 'results' and 'value' are incompatible.
+    Property 'validDateRange' is missing in type 'Response' but required in type 'DateRangeResponse'.
+src/DateRange.tsx(134,17): error TS2345: Argument of type '(results: DateRangeResponse) => void' is not assignable to parameter of type '(value: Response) => void | PromiseLike<void>'.
+src/DateRange.tsx(172,24): error TS2339: Property 'WINTER' does not exist on type '{ SPRING: { label: string; startDay: string; endDay: string; }; FALL: { label: string; startDay: string; endDay: string; }; }'.
+src/DateRange.tsx(221,16): error TS2339: Property 'onDateRangeChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/DateRange.tsx(225,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/DateRange.tsx(234,31): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(235,33): error TS2339: Property 'startDateOptions' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(246,31): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DateRange.tsx(247,33): error TS2339: Property 'endDateOptions' does not exist on type 'Readonly<{}>'.
+src/DebrisBreakdown.tsx(2,36): error TS7016: Could not find a declaration file for module '@nivo/sunburst'. '/home/mwilli20/Documents/bob/coa/coa_ui/node_modules/@nivo/sunburst/index.js' implicitly has an 'any' type.
+  Try `npm install @types/nivo__sunburst` if it exists or add a new declaration (.d.ts) file containing `declare module '@nivo/sunburst';`
+src/DebrisBreakdown.tsx(564,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/DebrisBreakdown.tsx(587,18): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/DebrisBreakdown.tsx(588,18): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/DebrisBreakdown.tsx(606,20): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DebrisBreakdown.tsx(607,20): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DebrisBreakdown.tsx(629,7): error TS2304: Cannot find name 'urlLocationName'.
+src/DebrisBreakdown.tsx(635,9): error TS2304: Cannot find name 'urlLocationName'.
+src/DebrisBreakdown.tsx(642,18): error TS7006: Parameter 'results' implicitly has an 'any' type.
+src/DebrisBreakdown.tsx(644,22): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/DebrisBreakdown.tsx(646,15): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DebrisBreakdown.tsx(649,20): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DebrisBreakdown.tsx(656,11): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DebrisBreakdown.tsx(672,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/DebrisBreakdown.tsx(675,28): error TS2339: Property 'chartData' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(30,45): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/DirtyDozen.tsx(31,19): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/DirtyDozen.tsx(38,42): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/DirtyDozen.tsx(53,3): error TS2322: Type 'Element[]' is not assignable to type 'Component<{}, {}, any>[]'.
+  Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/DirtyDozen.tsx(57,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/DirtyDozen.tsx(75,16): error TS7006: Parameter 'startDate' implicitly has an 'any' type.
+src/DirtyDozen.tsx(75,27): error TS7006: Parameter 'endDate' implicitly has an 'any' type.
+src/DirtyDozen.tsx(82,18): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(83,18): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(89,15): error TS7006: Parameter 'location' implicitly has an 'any' type.
+src/DirtyDozen.tsx(100,18): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(101,18): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(105,19): error TS7006: Parameter 'locationCategory' implicitly has an 'any' type.
+src/DirtyDozen.tsx(105,37): error TS7006: Parameter 'locationName' implicitly has an 'any' type.
+src/DirtyDozen.tsx(105,51): error TS7006: Parameter 'startDate' implicitly has an 'any' type.
+src/DirtyDozen.tsx(105,62): error TS7006: Parameter 'endDate' implicitly has an 'any' type.
+src/DirtyDozen.tsx(126,40): error TS7006: Parameter 'results' implicitly has an 'any' type.
+src/DirtyDozen.tsx(127,29): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DirtyDozen.tsx(127,60): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/DirtyDozen.tsx(148,24): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/DirtyDozen.tsx(150,44): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/DirtyDozen.tsx(161,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/DirtyDozen.tsx(165,30): error TS2339: Property 'nivoBarChartData' does not exist on type 'Readonly<{}>'.
+src/DirtyDozen.tsx(177,13): error TS2322: Type '"#a6cee3"' is not assignable to type 'Colors'.
+src/DirtyDozen.tsx(189,13): error TS2322: Type '{ orient: string; tickSize: number; tickPadding: number; tickRotation: number; legend: string; legendPosition: string; legendOffset: number; }' is not assignable to type 'Partial<{ format: string | LabelFormatter; legend: string; legendOffset: number; legendPosition: "start" | "center" | "end"; orient: "right" | "bottom" | "left" | "top"; tickPadding: number; tickRotation: number; tickSize: number; tickValues: number | ... 1 more ... | number[]; }>'.
+  Types of property 'legendPosition' are incompatible.
+    Type 'string' is not assignable to type '"start" | "center" | "end" | undefined'.
+src/DirtyDozen.tsx(198,13): error TS2322: Type '{ orient: string; tickSize: number; tickPadding: number; tickRotation: number; legend: string; legendPosition: string; legendOffset: number; }' is not assignable to type 'Partial<{ format: string | LabelFormatter; legend: string; legendOffset: number; legendPosition: "start" | "center" | "end"; orient: "right" | "bottom" | "left" | "top"; tickPadding: number; tickRotation: number; tickSize: number; tickValues: number | ... 1 more ... | number[]; }>'.
+  Types of property 'legendPosition' are incompatible.
+    Type 'string' is not assignable to type '"start" | "center" | "end" | undefined'.
+src/DirtyDozen.tsx(251,30): error TS2339: Property 'tableItems' does not exist on type 'Readonly<{}>'.
+src/FilterComponent.tsx(32,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/FilterComponent.tsx(38,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/FilterComponent.tsx(43,10): error TS2322: Type '{ className: string; title: string; dropdown: { options: string[]; defaultOption: string; }; selections: { value: string; text: string; }[]; defaultSelections: string[]; selectionsChanged: (items: string[]) => void; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<FilterOptions> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<FilterOptions> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterComponent.tsx(54,10): error TS2322: Type '{ className: string; title: string; dropdown: { options: string[]; defaultOption: string; }; selections: { value: string; text: string; }[]; defaultSelections: string[]; selectionsChanged: (sites: string[]) => void; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<FilterOptions> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<FilterOptions> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(2,10): error TS2305: Module '"../node_modules/@types/react-autosuggest"' has no exported member 'Autosuggest'.
+src/FilterOptions.tsx(3,41): error TS7016: Could not find a declaration file for module 'react-checkbox-group'. '/home/mwilli20/Documents/bob/coa/coa_ui/node_modules/react-checkbox-group/react-checkbox-group.js' implicitly has an 'any' type.
+  Try `npm install @types/react-checkbox-group` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-checkbox-group';`
+src/FilterOptions.tsx(4,10): error TS2305: Module '"react-dropdown"' has no exported member 'Dropdown'.
+src/FilterOptions.tsx(11,3): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/FilterOptions.tsx(33,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/FilterOptions.tsx(36,27): error TS2339: Property 'defaultSelections' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(37,22): error TS2339: Property 'defaultSelections' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(51,20): error TS2339: Property 'selections' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(52,11): error TS7006: Parameter 'selection' implicitly has an 'any' type.
+src/FilterOptions.tsx(60,25): error TS7006: Parameter 'suggestion' implicitly has an 'any' type.
+src/FilterOptions.tsx(63,23): error TS7006: Parameter 'suggestion' implicitly has an 'any' type.
+src/FilterOptions.tsx(63,55): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/FilterOptions.tsx(69,36): error TS7031: Binding element 'value' implicitly has an 'any' type.
+src/FilterOptions.tsx(75,27): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/FilterOptions.tsx(75,36): error TS7031: Binding element 'suggestion' implicitly has an 'any' type.
+src/FilterOptions.tsx(75,48): error TS7031: Binding element 'suggestionValue' implicitly has an 'any' type.
+src/FilterOptions.tsx(79,20): error TS2339: Property 'options' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(80,18): error TS2339: Property 'options' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(85,16): error TS2339: Property 'selectionsChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(85,45): error TS2339: Property 'options' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(96,26): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/FilterOptions.tsx(96,35): error TS7031: Binding element 'newValue' implicitly has an 'any' type.
+src/FilterOptions.tsx(102,21): error TS7006: Parameter 'newOptions' implicitly has an 'any' type.
+src/FilterOptions.tsx(106,16): error TS2339: Property 'selectionsChanged' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(110,13): error TS2339: Property 'value' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(110,20): error TS2339: Property 'suggestions' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(118,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/FilterOptions.tsx(121,27): error TS2339: Property 'title' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(127,33): error TS2339: Property 'dropdown' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(128,28): error TS2339: Property '_onSelect' does not exist on type 'FilterOptions'.
+src/FilterOptions.tsx(129,31): error TS2339: Property 'dropdown' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/FilterOptions.tsx(149,29): error TS2339: Property 'options' does not exist on type 'Readonly<{}>'.
+src/FilterOptions.tsx(152,41): error TS2339: Property 'selections' does not exist on type 'Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/HeaderNavigation.tsx(12,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/HeaderNavigation.tsx(38,9): error TS2605: JSX element type 'Component<{}, {}, any>' is not a constructor function for JSX elements.
+  Type 'Component<{}, {}, any>' is missing the following properties from type 'Element': type, key
+src/HistoricalTrendsChart.tsx(1,32): error TS7016: Could not find a declaration file for module '@nivo/line'. '/home/mwilli20/Documents/bob/coa/coa_ui/node_modules/@nivo/line/index.js' implicitly has an 'any' type.
+  Try `npm install @types/nivo__line` if it exists or add a new declaration (.d.ts) file containing `declare module '@nivo/line';`
+src/HistoricalTrendsChart.tsx(245,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/HistoricalTrendsChart.tsx(259,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/HistoricalTrendsChart.tsx(264,32): error TS2339: Property 'chartData' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(9,10): error TS2305: Module '"../node_modules/@types/react-select"' has no exported member 'Select'.
+src/LocationDetails.tsx(18,44): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/LocationDetails.tsx(19,19): error TS7006: Parameter 'name' implicitly has an 'any' type.
+src/LocationDetails.tsx(23,15): error TS7006: Parameter 'props' implicitly has an 'any' type.
+src/LocationDetails.tsx(52,18): error TS7006: Parameter 'results' implicitly has an 'any' type.
+src/LocationDetails.tsx(53,31): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/LocationDetails.tsx(53,57): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/LocationDetails.tsx(66,24): error TS7006: Parameter 'results' implicitly has an 'any' type.
+src/LocationDetails.tsx(67,37): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/LocationDetails.tsx(67,63): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/LocationDetails.tsx(68,22): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/LocationDetails.tsx(79,19): error TS7006: Parameter 'data' implicitly has an 'any' type.
+src/LocationDetails.tsx(82,39): error TS7006: Parameter 'obj' implicitly has an 'any' type.
+src/LocationDetails.tsx(82,44): error TS7006: Parameter 'curr' implicitly has an 'any' type.
+src/LocationDetails.tsx(86,41): error TS7006: Parameter 'locationObj' implicitly has an 'any' type.
+src/LocationDetails.tsx(92,47): error TS7006: Parameter 'obj' implicitly has an 'any' type.
+src/LocationDetails.tsx(92,52): error TS7006: Parameter 'curr' implicitly has an 'any' type.
+src/LocationDetails.tsx(110,28): error TS2339: Property 'locationCategory' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(111,24): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(114,34): error TS2339: Property 'startDate' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(114,56): error TS2339: Property 'endDate' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(117,33): error TS7006: Parameter 'selection' implicitly has an 'any' type.
+src/LocationDetails.tsx(117,44): error TS7006: Parameter 'action' implicitly has an 'any' type.
+src/LocationDetails.tsx(124,18): error TS2339: Property 'allLocations' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(138,25): error TS7006: Parameter 'selection' implicitly has an 'any' type.
+src/LocationDetails.tsx(138,36): error TS7006: Parameter 'action' implicitly has an 'any' type.
+src/LocationDetails.tsx(144,28): error TS2339: Property 'locationCategory' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(159,15): error TS7006: Parameter 'location' implicitly has an 'any' type.
+src/LocationDetails.tsx(160,10): error TS2339: Property 'dateRangeComponent' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(161,10): error TS2339: Property 'debrisBreakdown' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(162,10): error TS2339: Property 'dirtyDozen' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(165,16): error TS7006: Parameter 'startDate' implicitly has an 'any' type.
+src/LocationDetails.tsx(165,27): error TS7006: Parameter 'endDate' implicitly has an 'any' type.
+src/LocationDetails.tsx(166,14): error TS2339: Property 'debrisBreakdown' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(167,12): error TS2339: Property 'debrisBreakdown' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(169,14): error TS2339: Property 'dirtyDozen' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(170,12): error TS2339: Property 'dirtyDozen' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(175,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/LocationDetails.tsx(187,41): error TS2339: Property 'locationCategories' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(188,39): error TS2339: Property 'locationCategory' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(190,27): error TS7006: Parameter 'selectLocationCategory' implicitly has an 'any' type.
+src/LocationDetails.tsx(191,28): error TS2339: Property 'selectLocationCategory' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(199,41): error TS2339: Property 'locationOptions' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(200,39): error TS2339: Property 'location' does not exist on type 'Readonly<{}>'.
+src/LocationDetails.tsx(202,27): error TS7006: Parameter 'selectLocation' implicitly has an 'any' type.
+src/LocationDetails.tsx(203,28): error TS2339: Property 'selectLocation' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(220,24): error TS2322: Type '{ onDateRangeChanged: (startDate: string, endDate: string) => void; ref: (dateRangeComponent: DateRangeComponent | null) => void; }' is not assignable to type 'IntrinsicAttributes & IntrinsicClassAttributes<DateRangeComponent> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+  Property 'onDateRangeChanged' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<DateRangeComponent> & Readonly<{}> & Readonly<{ children?: ReactNode; }>'.
+src/LocationDetails.tsx(225,32): error TS2339: Property 'dateRangeComponent' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(239,32): error TS2339: Property 'debrisBreakdown' does not exist on type 'LocationDetails'.
+src/LocationDetails.tsx(251,32): error TS2339: Property 'dirtyDozen' does not exist on type 'LocationDetails'.
+src/Routes.tsx(1,8): error TS1192: Module '"/home/mwilli20/Documents/bob/coa/coa_ui/src/Site"' has no default export.
+src/Routes.tsx(2,8): error TS1192: Module '"/home/mwilli20/Documents/bob/coa/coa_ui/src/Trends"' has no default export.
+src/Routes.tsx(7,39): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/Routes.tsx(14,7): error TS2322: Type '() => void' is not assignable to type 'FunctionComponent<any> | ComponentClass<any, any> | ComponentClass<RouteComponentProps<any, StaticContext, any>, any> | FunctionComponent<RouteComponentProps<any, StaticContext, any>> | undefined'.
+  Type '() => void' is not assignable to type 'FunctionComponent<any>'.
+    Type 'void' is not assignable to type 'ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)> | null) | (new (props: any) => Component<any, any, any>)> | null'.
+src/Routes.tsx(15,9): error TS2322: Type '"http://www.cleanoceanaction.org/index.php?id=2"' is not assignable to type 'Location'.
+src/Site.tsx(1,8): error TS1192: Module '"/home/mwilli20/Documents/bob/coa/coa_ui/src/LocationDetails"' has no default export.
+src/Site.tsx(10,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/Trends.tsx(11,5): error TS2322: Type 'Element' is not assignable to type 'Component<{}, {}, any>'.
+src/index.tsx(2,10): error TS2305: Module '"./registerServiceWorker"' has no exported member 'registerServiceWorker'.
+src/registerServiceWorker.tsx(27,9): error TS2531: Object is possibly 'null'.
+src/registerServiceWorker.tsx(28,15): error TS2531: Object is possibly 'null'.
+src/registerServiceWorker.tsx(57,9): error TS2531: Object is possibly 'null'.
+src/registerServiceWorker.tsx(80,31): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+Linting
+
+/home/mwilli20/Documents/bob/coa/coa_ui/src/DateRange.tsx
+   23:3   error  Delete `··`                                                              prettier/prettier
+   24:1   error  Replace `····lastDate·` with `··lastDate`                                prettier/prettier
+   24:14  error  Unexpected a space before the ':'                                        @typescript-eslint/type-annotation-spacing
+   28:3   error  Replace `··validDateRange:·DateRange` with `validDateRange:·DateRange;`  prettier/prettier
+   28:30  error  Expected a semicolon                                                     @typescript-eslint/member-delimiter-style
+   65:16  error  'onDateRangeChanged' is missing in props validation                      react/prop-types
+   74:16  error  'onDateRangeChanged' is missing in props validation                      react/prop-types
+   85:16  error  'onDateRangeChanged' is missing in props validation                      react/prop-types
+   92:16  error  'onDateRangeChanged' is missing in props validation                      react/prop-types
+  221:16  error  'onDateRangeChanged' is missing in props validation                      react/prop-types
+
+/home/mwilli20/Documents/bob/coa/coa_ui/src/FilterOptions.tsx
+   36:27  error  'defaultSelections' is missing in props validation       react/prop-types
+   37:22  error  'defaultSelections' is missing in props validation       react/prop-types
+   51:20  error  'selections' is missing in props validation              react/prop-types
+   51:31  error  'selections.filter' is missing in props validation       react/prop-types
+   85:16  error  'selectionsChanged' is missing in props validation       react/prop-types
+  106:16  error  'selectionsChanged' is missing in props validation       react/prop-types
+  121:27  error  'title' is missing in props validation                   react/prop-types
+  127:33  error  'dropdown' is missing in props validation                react/prop-types
+  127:42  error  'dropdown.options' is missing in props validation        react/prop-types
+  129:31  error  'dropdown' is missing in props validation                react/prop-types
+  129:40  error  'dropdown.defaultOption' is missing in props validation  react/prop-types
+  152:41  error  'selections' is missing in props validation              react/prop-types
+
+/home/mwilli20/Documents/bob/coa/coa_ui/src/Routes.tsx
+  7:16  error  Component definition is missing display name  react/display-name
+
+✖ 23 problems (23 errors, 0 warnings)
+  5 errors and 0 warnings potentially fixable with the `--fix` option.
+
