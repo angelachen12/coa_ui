@@ -11,7 +11,7 @@ RUN make install-deps
 
 COPY ./ /app/
 
-RUN npm run build
+RUN make build
 
 FROM nginx:latest
 

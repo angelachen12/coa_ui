@@ -1,4 +1,4 @@
-import LocationDetails from "./LocationDetails";
+import { LocationDetails } from "./LocationDetails";
 
 import * as React from "react";
 import { Grid, Col } from "react-bootstrap";

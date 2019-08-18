@@ -1,5 +1,5 @@
-import Site from "./Site";
-import Trends from "./Trends";
+import { Site } from "./Site";
+import { Trends } from "./Trends";
 
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";

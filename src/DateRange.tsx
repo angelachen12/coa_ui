@@ -1,5 +1,7 @@
+import { getData } from "./BackendAccessor";
+
 import * as React from "react";
-import { Select } from "react-select";
+import Select from "react-select";
 
 import "./DateRange.css";
 
@@ -125,30 +127,12 @@ export class DateRangeComponent extends React.Component {
       return;
     }
 
-    const url = `http://coa-flask-app-dev.us-east-1.elasticbeanstalk.com`;
-    const tail =
-      `/validdaterange` +
-      `?locationCategory=` +
-      locationCategory +
-      `&locationName=` +
-      locationName;
+    const url =
+      "validdaterange" +
+      `?locationCategory=${locationCategory}` +
+      `&locationName=${locationName}`;
 
-    const responseHandler = function(results: DateRangeResponse): void {
-      results.json().then(this.handleValidDateRangeResponse.bind(this));
-    }.bind(this);
-
-    fetch(url + tail, { method: "GET", mode: "cors" })
-      .then(responseHandler)
-      .catch(function() {
-        console.log(
-          "Failed to hit deployed service for dirty dozen api, trying to hit the api locally."
-        );
-        fetch(`http://127.0.0.1:5000` + tail, { method: "GET", mode: "cors" })
-          .then(responseHandler)
-          .catch(function() {
-            console.log("Failed to execute query for valid date range.");
-          });
-      });
+    getData(url).then(this.handleValidDateRangeResponse.bind(this));
   }
 
   getStartDateOption(season: SeasonOptions, year: number): DateRangeOption {

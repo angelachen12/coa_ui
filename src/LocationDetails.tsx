@@ -1,3 +1,4 @@
+import { getData } from "./BackendAccessor";
 import { DateRangeComponent } from "./DateRange";
 import { DebrisBreakdownComponent } from "./DebrisBreakdown";
 import { DirtyDozenComponent } from "./DirtyDozen";
@@ -6,16 +7,20 @@ import { HistoricalTrendsComponent } from "./HistoricalTrendsChart";
 
 import * as React from "react";
 import { Panel, Grid, Row, Col } from "react-bootstrap";
-import { Select } from "react-select";
+import Select from "react-select";
 
 import "./LocationDetails.css";
 
-interface SiteOptions {
+interface SiteOption {
   label: string;
   value: string;
 }
 
-function transformSiteNamesToSelectOptions(data): Array<SiteOptions> {
+const COUNTY_STR = "county";
+const TOWN_STR = "town";
+const SITE_STR = "site";
+
+function transformLocationsOptions(data): Array<SiteOption> {
   return data.map(name => ({ label: name, value: name }));
 }
 
@@ -23,146 +28,86 @@ export class LocationDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allLocations: undefined, // All locations and categories to be retrieved from database
-      location: undefined, // Selected location
-      locationCategory: undefined, // Selected location category
-      locationOptions: [
-        {
-          label: "Sites",
-          options: [],
-        },
-      ],
-      locationCategories: [
-        {
-          label: "Sites",
-          value: "Sites",
-        },
-      ],
+      allLocations: {}, // All locations and categories to be retrieved from database
+      currentCounty: undefined,
+      currentTown: undefined,
+      currentSite: undefined,
       dirtyDozen: undefined, // Component for 12 most common debris items
       debrisBreakdown: undefined, // Component for hierarchical breakdown of debris items
     };
   }
 
   componentDidMount(): void {
-    fetch(`http://coa-flask-app-dev.us-east-1.elasticbeanstalk.com/locations`, {
-      method: "GET",
-      mode: "cors",
-    })
-      .then(
-        function(results): void {
-          results.json().then(this.updateLocations.bind(this));
-        }.bind(this)
-      )
-      .catch(
-        function(): void {
-          console.log(
-            "Failed to fetch location from deployed service... trying to hit the api locally."
-          );
-          fetch(`http://127.0.0.1:5000/locations`, {
-            method: "GET",
-            mode: "cors",
-          })
-            .then(
-              function(results): void {
-                results.json().then(this.updateLocations.bind(this));
-              }.bind(this)
-            )
-            .catch(function() {
-              console.log(
-                "Failed to hit back-end service for location details."
-              );
-            });
-        }.bind(this)
-      );
+    const url = "locationsHierarchy";
+    getData(url).then(this.updateLocations.bind(this));
   }
 
   updateLocations(data): void {
     console.log("LocationDetails::updateLocations", data);
-    data = data.locations;
-    const allLocations = data.reduce((obj, curr) => {
-      obj[curr.locationCategory] = curr.locationNames;
-      return obj;
-    }, {});
-    const locationCategories = data.map(locationObj => {
-      return {
-        label: locationObj.locationLabel,
-        value: locationObj.locationCategory,
-      };
-    });
-    const siteLocationCategory = data.reduce((obj, curr) => {
-      if (curr.locationCategory === "site") {
-        obj.label = curr.locationLabel;
-        obj.value = curr.locationCategory;
-      }
-      return obj;
-    }, {});
-    const siteLocationOptions = transformSiteNamesToSelectOptions(
-      allLocations["site"]
-    );
+    const allLocations = data.locationsHierarchy;
+
+    console.log("LocationDetails::allLocations", allLocations);
+
+    const defaultCounty = Object.keys(allLocations)[0];
+
     this.setState({
-      allLocations,
-      location: siteLocationOptions[2], // Defaulting to 3rd option in array: 16th Ave Beach.
-      locationOptions: siteLocationOptions,
-      locationCategory: siteLocationCategory,
-      locationCategories,
+      allLocations: allLocations,
+      currentCounty: defaultCounty,
     });
-    const value = {
-      category: this.state.locationCategory.value,
-      name: this.state.location.value,
-    };
-    this.setLocation(value);
+
+    this.setLocation(COUNTY_STR, defaultCounty);
     this.setDateRange(this.state.startDate, this.state.endDate);
   }
 
-  handleLocationCategoryChanged(selection, action): void {
-    console.log(
-      "LocationDetails::handleLocationCategoryChanged",
-      selection,
-      action
-    );
-    const locationOptions = transformSiteNamesToSelectOptions(
-      this.state.allLocations[selection.value]
-    );
+  handleCountyChanged(selection: SiteOption): void {
+    console.log("LocationDetails::handleCountyChanged", selection);
     this.setState({
-      locationCategory: selection,
-      location: locationOptions[0],
-      locationOptions,
+      currentCounty: selection.value,
+      currentTown: undefined,
+      currentSite: undefined,
     });
-    const value = {
-      category: selection.value,
-      name: locationOptions[0].value,
-    };
-    this.setLocation(value);
+    this.setLocation(COUNTY_STR, selection.value);
   }
 
-  handleLocationChanged(selection, action): void {
-    console.log("LocationDetails::handleLocationChanged", selection, action);
+  handleTownChanged(selection: SiteOption): void {
+    console.log("LocationDetails::handleTownChanged", selection);
     this.setState({
-      location: selection,
+      currentTown: selection.value,
+      currentSite: undefined,
     });
-    const value = {
-      category: this.state.locationCategory.value,
-      name: selection.value,
-    };
-    this.setLocation(value);
+
+    this.setLocation(TOWN_STR, selection.value);
+  }
+
+  handleSiteChanged(selection: SiteOption): void {
+    console.log("LocationDetails::handleSiteChanged", selection);
+    this.setState({
+      currentSite: selection.value,
+    });
+
+    this.setLocation(SITE_STR, selection.value);
   }
 
   handleDateRangeChanged(startDate: string, endDate: string): void {
     console.log("LocationDetails::handleDateRangeChanged", startDate, endDate);
     this.setState({
-      startDate,
-      endDate,
+      startDate: startDate,
+      endDate: endDate,
     });
     this.setDateRange(startDate, endDate);
   }
 
-  setLocation(location): void {
-    this.dateRangeComponent.setLocation(location);
-    this.debrisBreakdown.setLocation(location);
-    this.dirtyDozen.setLocation(location);
+  setLocation(locationCategory: string, location: string): void {
+    const value = {
+      category: locationCategory,
+      name: location,
+    };
+    this.dateRangeComponent.setLocation(value);
+    this.debrisBreakdown.setLocation(value);
+    this.dirtyDozen.setLocation(value);
   }
 
-  setDateRange(startDate, endDate): void {
+  setDateRange(startDate: string, endDate: string): void {
     if (this.debrisBreakdown) {
       this.debrisBreakdown.setDateRange(startDate, endDate);
     }
@@ -176,34 +121,64 @@ export class LocationDetails extends React.Component {
       <div>
         <Panel>
           <Panel.Body>
-            <Grid fluid={true}>
+            <Grid fluid>
               <Row>
                 <Col md={2}>
                   <h3 className="locDetailsHeading">Location Details</h3>
                 </Col>
                 <Col md={2}>
                   <Select
-                    className="select-location-category"
-                    options={this.state.locationCategories}
-                    value={this.state.locationCategory}
-                    onChange={this.handleLocationCategoryChanged.bind(this)}
+                    className="select-county"
+                    options={transformLocationsOptions(
+                      Object.keys(this.state.allLocations)
+                    )}
+                    value={transformForOption(this.state.currentCounty)}
+                    onChange={this.handleCountyChanged.bind(this)}
+                    ref={(selectCounty): void => {
+                      this.selectCounty = selectCounty;
+                    }}
+                    placeholder={"Select County"}
+                  ></Select>
+                </Col>
+                <Col md={2}>
+                  <Select
+                    className="select-town"
+                    options={
+                      this.state.currentCounty === undefined
+                        ? undefined
+                        : transformLocationsOptions(
+                            Object.keys(
+                              this.state.allLocations[this.state.currentCounty]
+                            )
+                          )
+                    }
+                    value={transformForOption(this.state.currentTown)}
+                    onChange={this.handleTownChanged.bind(this)}
                     ref={(selectLocationCategory): void => {
                       this.selectLocationCategory = selectLocationCategory;
                     }}
-                    placeholder={"Select category..."}
-                  />
+                    placeholder={"Select Town"}
+                  ></Select>
                 </Col>
-                <Col md={8}>
+                <Col md={6}>
                   <Select
-                    className="select-location"
-                    options={this.state.locationOptions}
-                    value={this.state.location}
-                    onChange={this.handleLocationChanged.bind(this)}
+                    className="select-site"
+                    options={
+                      this.state.currentTown === undefined
+                        ? undefined
+                        : transformLocationsOptions(
+                            this.state.allLocations[this.state.currentCounty][
+                              this.state.currentTown
+                            ]
+                          )
+                    }
+                    value={transformForOption(this.state.currentSite)}
+                    onChange={this.handleSiteChanged.bind(this)}
                     ref={(selectLocation): void => {
                       this.selectLocation = selectLocation;
                     }}
-                    placeholder={"Select location..."}
-                  />
+                    placeholder={"Select Site"}
+                  ></Select>
                 </Col>
               </Row>
             </Grid>
@@ -212,7 +187,7 @@ export class LocationDetails extends React.Component {
         <Panel>
           <Panel.Heading>Debris Breakdown</Panel.Heading>
           <Panel.Body>
-            <Grid fluid={true}>
+            <Grid fluid>
               <Row>
                 <Panel>
                   <Panel.Body>
@@ -224,7 +199,7 @@ export class LocationDetails extends React.Component {
                         ref={(dateRangeComponent): void => {
                           this.dateRangeComponent = dateRangeComponent;
                         }}
-                      />
+                      ></DateRangeComponent>
                     </Col>
                   </Panel.Body>
                 </Panel>
@@ -261,7 +236,7 @@ export class LocationDetails extends React.Component {
         <Panel>
           <Panel.Heading>Historical View</Panel.Heading>
           <Panel.Body>
-            <Grid fluid={true}>
+            <Grid fluid>
               <Row>
                 <Col md={9}>
                   <HistoricalTrendsComponent />

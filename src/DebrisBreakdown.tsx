@@ -1,3 +1,5 @@
+import { getData } from "./BackendAccessor";
+
 import * as React from "react";
 import { ResponsiveSunburst } from "@nivo/sunburst";
 
@@ -623,49 +625,25 @@ export class DebrisBreakdownComponent extends React.Component {
       endDate
     );
 
-    // TODO: This needs to be implemented.
+    const urlLocationName = locationName.trim().replace(/ /g, "%20");
+    const url =
+      "breakdown" +
+      `?locationCategory=${locationCategory}` +
+      `&locationName=${urlLocationName}` +
+      `&startDate=${startDate}` +
+      `&endDate=${endDate}`;
 
-    if (locationCategory && locationName && startDate && endDate) {
-      urlLocationName = locationName.trim().replace(/ /g, "%20");
-      const url =
-        `http://coa-flask-app-dev.us-east-1.elasticbeanstalk.com/breakdown` +
-        `?locationCategory=` +
-        locationCategory +
-        `&locationName=` +
-        urlLocationName +
-        `&startDate=` +
-        startDate +
-        `&endDate=` +
-        endDate;
-      console.log("url", url);
-      fetch(url, { method: "GET", mode: "cors" }).then(
-        function(results): void {
-          results.json().then(
-            function(data): void {
-              console.log(data);
-              this.setState({
-                chartData: data.data,
-              });
-            }.bind(this)
-          );
-        }.bind(this),
-        function(): void {
-          console.log(
-            "failed to query breakdown api, resolving to default data"
-          );
-          this.setState({
-            chartData: DEFAULT_SUNBURST_DATA,
-          });
-        }.bind(this)
-      );
-    } else {
-      console.log(
-        "Not enough information to query for debris breakdown statistics."
-      );
-      this.setState({
-        chartData: EMPTY_SUNBURST_DATA,
+    getData(url)
+      .then((results): void => {
+        this.setState({
+          chartData: results.data,
+        });
+      })
+      .catch((): void => {
+        this.setState({
+          chartData: DEFAULT_SUNBURST_DATA,
+        });
       });
-    }
   }
 
   public render(): React.Component {

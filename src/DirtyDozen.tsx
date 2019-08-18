@@ -1,8 +1,27 @@
+import { getData } from "./BackendAccessor";
+
 import * as React from "react";
 import { Table, Grid } from "react-bootstrap";
 import { ResponsiveBar } from "@nivo/bar";
 
 import "./DirtyDozen.css";
+
+interface DirtyDozenData {
+  itemCount: number;
+  itemName: string;
+  materialName: string;
+  percentage: number;
+}
+
+interface BarChartData {
+  count: number;
+  item: string;
+}
+
+interface Location {
+  category: string;
+  name: string;
+}
 
 const DEFAULT_DATA = [
   {
@@ -22,35 +41,33 @@ const DEFAULT_DATA = [
   },
 ];
 
-interface BarChartData {
-  item: string;
-  count: number;
-}
-
-function transformDirtyDozenDataForBarChart(data): Array<BarChartData> {
-  return data.map(item => ({ item: item.itemName, count: item.count }));
+function transformDirtyDozenDataForBarChart(
+  data: Array<DirtyDozenData>
+): Array<BarChartData> {
+  return data.map(item => ({ item: item.itemName, count: item.itemCount }));
 }
 
 function numberWithCommas(x: number): string {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function transformDirtyDozenDataForTable(data): Array<React.Component> {
-  const tableData = [];
-  for (let i = 0; i < data.length; ++i) {
-    const item = data[i];
-    const count = item.count ? numberWithCommas(item.count) : 0;
-    tableData.push(
-      <tr key={i}>
-        <td>{i + 1}</td>
-        <td>{item.itemName}</td>
-        <td>{item.materialName}</td>
-        <td>{count}</td>
-        <td>{item.percentage.toFixed(1)}</td>
-      </tr>
-    );
-  }
-  return tableData;
+function transformDirtyDozenDataForTable(
+  data: Array<DirtyDozenData>
+): Array<React.Component> {
+  return data.map(
+    (item: DirtyDozenData, i: number): React.Component => {
+      const count = item.count ? numberWithCommas(item.count) : 0;
+      return (
+        <tr key={i}>
+          <td>{i + 1}</td>
+          <td>{item.itemName}</td>
+          <td>{item.materialName}</td>
+          <td>{count}</td>
+          <td>{item.percentage.toFixed(1)}</td>
+        </tr>
+      );
+    }
+  );
 }
 
 export class DirtyDozenComponent extends React.Component {
@@ -72,7 +89,7 @@ export class DirtyDozenComponent extends React.Component {
     });
   }
 
-  setDateRange(startDate, endDate): void {
+  setDateRange(startDate: string, endDate: string): void {
     console.log("DirtyDozen::setDateRange", startDate, endDate);
     this.setState({
       startDate: startDate,
@@ -86,7 +103,7 @@ export class DirtyDozenComponent extends React.Component {
     );
   }
 
-  setLocation(location): void {
+  setLocation(location: Location): void {
     console.log("DirtyDozen::setLocation", location);
     this.setState({
       location: {
@@ -102,7 +119,12 @@ export class DirtyDozenComponent extends React.Component {
     );
   }
 
-  queryDirtyDozen(locationCategory, locationName, startDate, endDate): void {
+  queryDirtyDozen(
+    locationCategory: string,
+    locationName: string,
+    startDate: string,
+    endDate: string
+  ): void {
     console.log(
       "DirtyDozen::queryDirtyDozen",
       locationCategory,
@@ -110,47 +132,26 @@ export class DirtyDozenComponent extends React.Component {
       startDate,
       endDate
     );
-    if (locationCategory && locationName && startDate && endDate) {
-      locationName = locationName.trim().replace(/ /g, "%20");
-      const url = `http://coa-flask-app-dev.us-east-1.elasticbeanstalk.com`;
-      const tail =
-        `/dirtydozen` +
-        `?locationCategory=` +
-        locationCategory +
-        `&locationName=` +
-        locationName +
-        `&startDate=` +
-        startDate +
-        `&endDate=` +
-        endDate;
-      const responseHandler = function(results): void {
-        results.json().then(this.handleDirtyDozenData.bind(this));
-      }.bind(this);
-      fetch(url + tail, { method: "GET", mode: "cors" })
-        .then(responseHandler)
-        .catch(function() {
-          console.log(
-            "Failed to hit deployed service for dirty dozen api, trying to hit the api locally."
-          );
-          fetch(`http://127.0.0.1:5000` + tail, { method: "GET", mode: "cors" })
-            .then(responseHandler)
-            .catch(function() {
-              "Failed to execute query for dirty dozen";
-            });
-        });
-    } else {
-      console.log(
-        "Not enough information to query for dirty dozen statistics."
-      );
-    }
+    locationName = locationName.trim().replace(/ /g, "%20");
+    const url =
+      "dirtydozen" +
+      `?locationCategory=${locationCategory}` +
+      `&locationName=${locationName}` +
+      `&startDate=${startDate}` +
+      `&endDate=${endDate}`;
+
+    getData(url).then(this.handleDirtyDozenData.bind(this));
   }
 
+  // TODO: Need to make a DirtyDozenResponse type
   handleDirtyDozenData(data): void {
     console.log(data);
-    const dirtyDozen = data.dirtydozen.map(item => {
-      item.itemName = item.itemName ? item.itemName : item.categoryName;
-      return item;
-    });
+    const dirtyDozen = data.dirtydozen.map(
+      (item: DirtyDozenData): DirtyDozenData => {
+        item.itemName = item.itemName ? item.itemName : item.categoryName;
+        return item;
+      }
+    );
     this.setState({
       tableItems: transformDirtyDozenDataForTable(dirtyDozen),
       nivoBarChartData: transformDirtyDozenDataForBarChart(dirtyDozen),

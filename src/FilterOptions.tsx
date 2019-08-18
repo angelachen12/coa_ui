@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Autosuggest } from "react-autosuggest";
+import Autosuggest from "react-autosuggest";
 import { Checkbox, CheckboxGroup } from "react-checkbox-group";
-import { Dropdown } from "react-dropdown";
+import Dropdown from "react-dropdown";
 
 import "./FilterOptions.css";
 
@@ -49,7 +49,7 @@ export class FilterOptions extends React.Component {
     return inputLength === 0
       ? []
       : this.props.selections.filter(
-          selection =>
+          (selection: Selection): boolean =>
             selection.text.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
@@ -57,10 +57,10 @@ export class FilterOptions extends React.Component {
   // When suggestion is clicked, Autosuggest needs to populate the input
   // based on the clicked suggestion. Teach Autosuggest how to calculate the
   // input value for every given suggestion.
-  getSuggestionValue = (suggestion): string => suggestion.text;
+  getSuggestionValue = (suggestion: Selection): string => suggestion.text;
 
   // Use your imagination to render suggestions.
-  renderSuggestion = (suggestion): React.Component => (
+  renderSuggestion = (suggestion: Selection): React.Component => (
     <div>{suggestion.text}</div>
   );
 
