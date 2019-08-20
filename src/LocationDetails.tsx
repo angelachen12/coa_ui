@@ -21,7 +21,13 @@ const TOWN_STR = "town";
 const SITE_STR = "site";
 
 function transformLocationsOptions(data): Array<SiteOption> {
-  return data.map(name => ({ label: name, value: name }));
+  return data.map(name => {
+    const val = name === undefined ? "" : name;
+    return {
+      label: val,
+      value: val,
+    };
+  });
 }
 
 export class LocationDetails extends React.Component {
