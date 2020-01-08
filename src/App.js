@@ -9,6 +9,9 @@ class App extends Component {
     return (
       <div className="App">
         <HeaderNavigation />
+        <HeaderNavigation />
+        
+    
       </div>
     );
   }
