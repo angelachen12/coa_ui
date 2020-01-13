@@ -21,6 +21,9 @@ class HeaderNavigation extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
           <Nav pullRight>
+            <LinkContainer to="/upload">
+              <NavItem>Upload</NavItem>
+            </LinkContainer>
             <LinkContainer to="/map">
               <NavItem>Map</NavItem>
             </LinkContainer>
