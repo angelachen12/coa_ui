@@ -17,10 +17,12 @@
     "react-checkbox-group": "^4.0.1",
     "react-dom": "^16.8.6",
     "react-dropdown": "^1.6.4",
+    "react-excel-renderer": "^1.1.0",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.0.1",
-    "react-select": "^2.4.4"
+    "react-scripts": "^3.3.0",
+    "react-select": "^2.4.4",
+    "webpack": "^4.41.2"
   },
   "scripts": {
     "start": "react-scripts start",
